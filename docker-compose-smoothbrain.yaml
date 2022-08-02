@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  extractor:
+    image: container-tb-extractor:latest
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+    container_name: container-tb-extractor
+    restart: always
+    volumes:
+      - /Users/mikepalacio/dev/TradingBot/config.yaml:/etc/tradingbot_extractor/config.yaml
+

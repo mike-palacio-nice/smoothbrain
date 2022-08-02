@@ -24,6 +24,36 @@ marketData:
     - DOCN
     - NET
     - HCP
+    - SHOP
+    - AMD
+    - SQ
+    - TWLO
+    - ABNB
+    - UBER
+    - DDOG
+    - TSLA
+    - UPST
+    - MSFT
+    - TOST
+    - AAPL
+    - LCID
+    - GOOGL
+    - NVDA
+    - ENPH
+    - PLTR
+    - MNDT
+    - BKI
+    - PANW
+    - PSTG
+    - AMZN
+    - ADBE
+    - META
+    - QCOM
+    - AI
+    - TSM
+    - NXPI
+    - SMAR
+    - ASML
   
 database:
   host: tp1pzsvw6b9gb6v.cz6kbxppcrig.us-west-2.rds.amazonaws.com

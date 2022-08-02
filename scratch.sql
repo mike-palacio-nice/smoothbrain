@@ -1,8 +1,8 @@
-UPDATE test_data.ticker_state s 
-SET feed_record_count = (SELECT COUNT(1) FROM test_data.market_feed WHERE symbol = 'NET')
-WHERE symbol = 'NET';
-UPDATE test_data.ticker_state s 
-SET feed_record_count = (SELECT COUNT(1) FROM test_data.market_feed WHERE symbol = 'DOCN')
-WHERE symbol = 'DOCN';
+UPDATE test_data.economic_feed s 
+SET treasury_yield_10_yr = foo.lag_ty
+FROM (SELECT metric_ts, LAG(treasury_yield_10_yr, 1) OVER (ORDER BY metric_ts) lag_ty FROM test_data.economic_feed) foo
+WHERE treasury_yield_10_yr IS NULL
+AND foo.metric_ts = s.metric_ts;
+
 
 
