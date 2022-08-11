@@ -1,18 +1,45 @@
 version: "3.9"
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    deploy:
+      mode: global
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend
+  scheduler:
+    image: container-sb-scheduler:latest
+    deploy:
+      mode: global
+      update_config:
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /Users/mikepalacio/dev/SmoothBrain/config.yaml:/etc/smoothbrain/config.yaml
+    networks:
+      - backend
   extractor:
     image: container-tb-extractor:latest
     deploy:
-      replicas: 5
+      replicas: 8
       resources:
         limits:
           cpus: "0.2"
           memory: 1G
       restart_policy:
         condition: on-failure
-    container_name: container-tb-extractor
-    restart: always
     volumes:
-      - /Users/mikepalacio/dev/TradingBot/config.yaml:/etc/tradingbot_extractor/config.yaml
+      - /Users/mikepalacio/dev/SmoothBrain/config.yaml:/etc/smoothbrain/config.yaml
+    networks:
+      - backend
 
+networks:
+  backend:
+    driver: overlay
+    attachable: true

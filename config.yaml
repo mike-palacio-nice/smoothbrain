@@ -21,39 +21,53 @@ marketData:
     economic:
       target_table: test_data.economic_feed
   symbols:
-    - DOCN
-    - NET
-    - HCP
-    - SHOP
-    - AMD
-    - SQ
-    - TWLO
-    - ABNB
-    - UBER
-    - DDOG
-    - TSLA
-    - UPST
-    - MSFT
-    - TOST
     - AAPL
-    - LCID
-    - GOOGL
-    - NVDA
-    - ENPH
-    - PLTR
-    - MNDT
-    - BKI
-    - PANW
-    - PSTG
-    - AMZN
+    - ABNB
     - ADBE
-    - META
-    - QCOM
     - AI
-    - TSM
-    - NXPI
-    - SMAR
+    - AMD
+    - AMZN
     - ASML
+    - BEAM
+    - BKI
+    - CRSP
+    - DDOG
+    - DOCN
+    - ENPH
+    - GME
+    - GOOGL
+    - HCP
+    - LCID
+    - META
+    - MNDT
+    - MSFT
+    - NET
+    - NTLA
+    - NVDA
+    - NXPI
+    - PANW
+    - PLTR
+    - PSTG
+    - QCOM
+    - SHOP
+    - SMAR
+    - SQ
+    - TOST
+    - TSLA
+    - TSM
+    - TWLO
+    - UBER
+    - UPST
+    - UIS
+    - EA
+    - COIN
+    - SNAP
+    - INTC
+    - NFLX
+    - TWTR
+    - PYPL
+    - HEAR
+    - RRC
   
 database:
   host: tp1pzsvw6b9gb6v.cz6kbxppcrig.us-west-2.rds.amazonaws.com
@@ -64,3 +78,5 @@ database:
 model:
   save_path: /etc/tradingbot_modeler/model.pickle
   archive_path: /etc/tradingbot_modeler/archive
+  api:
+    base_url: http://localhost:8000

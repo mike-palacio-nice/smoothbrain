@@ -63,6 +63,16 @@ The LSCS will be responsible for ingesting live data into the pipeline so that i
 The modeler is an application that trains and test the GRU and LSTM models so that they can be used to predict
 future stock prices based on its exponential moving average (EMA).
 
+### Building The Training Dataset (container-tb-compiler)
+To build the training set:
+    - Incrementally load 60 Days Of Data into the ml_temp table
+    - Create an materialized view that contains the rows the model needs to train with such as the ROW_ID, any target fields (ex: future30_ema) a timestamp for when the view was refreshed, and excludes nulls for the target fields.
+    - After the ml_temp table in incrementally loaded, refresh the materialized view.
+    - At this point, the model is ready to be trained on the training set.
+    - The modeler will need to reset its metadata based on what exists in the materialized view. If the view was refreshed, the model will start reading the input from the beginning of the dataset.
+    - Training will stop once the model has read in all of the data from dataset.
+    - Once the model stops training, a new training dataset will be generated and the cycle repeats.
+
 ### Training
 The model needs to be trained periodically so that the it learns from the existing dataset collected in the extractor.
 As the extractor pulls data into the database, the modeler will load the new data into a training dataset, load the model,
